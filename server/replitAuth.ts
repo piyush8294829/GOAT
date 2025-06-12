@@ -165,6 +165,21 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
   // Skip authentication check if Replit auth is not enabled (local development)
   if (!isReplitAuthEnabled) {
     console.warn("⚠️  Authentication bypassed for local development");
+    
+    // Provide a mock user object for local development
+    req.user = {
+      claims: {
+        sub: "dev-user-123",
+        email: "dev@example.com",
+        first_name: "Dev",
+        last_name: "User",
+        exp: Math.floor(Date.now() / 1000) + 3600 // Expires in 1 hour
+      },
+      access_token: "mock-access-token",
+      refresh_token: "mock-refresh-token",
+      expires_at: Math.floor(Date.now() / 1000) + 3600
+    };
+    
     return next();
   }
 
