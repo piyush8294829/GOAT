@@ -9,8 +9,11 @@ import connectPg from "connect-pg-simple";
 import MemoryStore from "memorystore";
 import { storage } from "./storage";
 
-if (!process.env.REPLIT_DOMAINS) {
-  throw new Error("Environment variable REPLIT_DOMAINS not provided");
+// Make Replit auth optional for local development
+const isReplitAuthEnabled = !!process.env.REPLIT_DOMAINS;
+
+if (!isReplitAuthEnabled) {
+  console.warn("⚠️  REPLIT_DOMAINS not provided. Replit authentication will be disabled for local development.");
 }
 
 const getOidcConfig = memoize(
@@ -88,6 +91,12 @@ export async function setupAuth(app: Express) {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  // Skip Replit auth setup if not enabled
+  if (!isReplitAuthEnabled) {
+    console.warn("⚠️  Skipping Replit authentication setup for local development");
+    return;
+  }
+
   const config = await getOidcConfig();
 
   const verify: VerifyFunction = async (
@@ -118,6 +127,9 @@ export async function setupAuth(app: Express) {
   passport.deserializeUser((user: Express.User, cb) => cb(null, user));
 
   app.get("/api/login", (req, res, next) => {
+    if (!isReplitAuthEnabled) {
+      return res.status(501).json({ message: "Authentication not configured for local development" });
+    }
     passport.authenticate(`replitauth:${req.hostname}`, {
       prompt: "login consent",
       scope: ["openid", "email", "profile", "offline_access"],
@@ -125,6 +137,9 @@ export async function setupAuth(app: Express) {
   });
 
   app.get("/api/callback", (req, res, next) => {
+    if (!isReplitAuthEnabled) {
+      return res.status(501).json({ message: "Authentication not configured for local development" });
+    }
     passport.authenticate(`replitauth:${req.hostname}`, {
       successReturnToOrRedirect: "/",
       failureRedirect: "/api/login",
@@ -132,6 +147,9 @@ export async function setupAuth(app: Express) {
   });
 
   app.get("/api/logout", (req, res) => {
+    if (!isReplitAuthEnabled) {
+      return res.status(501).json({ message: "Authentication not configured for local development" });
+    }
     req.logout(() => {
       res.redirect(
         client.buildEndSessionUrl(config, {
@@ -144,6 +162,12 @@ export async function setupAuth(app: Express) {
 }
 
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
+  // Skip authentication check if Replit auth is not enabled (local development)
+  if (!isReplitAuthEnabled) {
+    console.warn("⚠️  Authentication bypassed for local development");
+    return next();
+  }
+
   const user = req.user as any;
 
   if (!req.isAuthenticated() || !user.expires_at) {
