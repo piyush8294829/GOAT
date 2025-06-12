@@ -37,6 +37,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth routes
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
       if (!user) {
@@ -52,6 +57,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Subscription status check
   app.get('/api/subscription/status', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
 
@@ -78,6 +88,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Onboarding routes
   app.get('/api/onboarding', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const onboarding = await storage.getUserOnboarding(userId);
       res.json(onboarding);
@@ -89,6 +104,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post('/api/onboarding', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       console.log("Onboarding request body:", req.body);
       console.log("User ID:", userId);
@@ -109,6 +129,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post('/api/onboarding/complete', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const onboarding = await storage.completeOnboarding(userId);
       res.json(onboarding);
@@ -126,6 +151,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           message: "Payment processing is not available. Please contact support.",
           error: "STRIPE_NOT_CONFIGURED"
         });
+      }
+
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
       }
 
       const userId = req.user.claims.sub;
@@ -319,6 +349,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Focus session routes
   app.post('/api/focus-sessions', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const validatedData = insertFocusSessionSchema.parse({
         ...req.body,
@@ -338,6 +373,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/focus-sessions', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const limit = parseInt(req.query.limit as string) || 10;
 
@@ -352,6 +392,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stats routes
   app.get('/api/stats/today', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const stats = await storage.getTodayStats(userId);
       res.json(stats);
@@ -364,6 +409,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Achievements routes
   app.get('/api/achievements', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const achievements = await storage.getUserAchievements(userId);
       res.json(achievements);
@@ -376,6 +426,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Referral code routes
   app.post('/api/referral-codes/validate', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const { code } = req.body;
 
@@ -409,6 +464,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/referral-codes/usage', isAuthenticated, async (req: any, res) => {
     try {
+      // Check if user and claims exist
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User authentication data is missing" });
+      }
+
       const userId = req.user.claims.sub;
       const usage = await storage.getUserReferralUsage(userId);
       res.json(usage);
