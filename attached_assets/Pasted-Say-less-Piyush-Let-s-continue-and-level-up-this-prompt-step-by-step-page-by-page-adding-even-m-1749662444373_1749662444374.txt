@@ -1,0 +1,180 @@
+Say less, Piyush! Let’s continue and level up this prompt, step-by-step, page-by-page, adding even more clarity and coverage so nothing gets missed. This is the one you’ll send when you want A-players (or AI) to take your app as seriously as you do.
+
+⸻
+
+🟪 A. APP FLOW — END-TO-END JOURNEY (continued)
+
+⸻
+
+1. ONBOARDING FLOW
+
+Objective: Instantly WOW new users, gather just enough info, build trust, and guide to subscription—never letting anyone skip ahead, get lost, or get confused. No “grey areas.” Onboarding is mandatory for all new users until they subscribe. After subscription, it must NEVER show again.
+
+Pages (Each One a Distinct Step):
+	1.	Welcome
+	•	Friendly, human greeting.
+	•	Copy like: “Hey, let’s customize your focus journey!”
+	•	Animated purple hand wave, bold logo, subtle glow.
+	•	‘Get Started’ button—big, animated, and focusable via keyboard.
+	2.	Goal Setting
+	•	Ask: “What’s your #1 focus goal?”
+	•	Animated options (work, study, health, custom…) as pill buttons.
+	•	Button selection triggers micro-animations (scale, color flash).
+	•	‘Next’ floats at bottom, only enabled when a goal is picked.
+	3.	Session Preferences
+	•	“How do you like your focus sessions?”
+	•	Options: Pomodoro, Long Session, Strict Mode (explainer tooltips).
+	•	Visual toggle for “Strict Mode” (with animated lock icon).
+	•	Can select multiple. Show summary if multiple chosen.
+	4.	App Blocking Preferences
+	•	“Want Flox AI to block distractions?”
+	•	Toggle for App/Website blocking.
+	•	Preview “What will be blocked?”—animated icon carousel (YouTube, Insta, etc).
+	•	Explain: “No personal data is ever shared.”
+	5.	Rewards & Motivation
+	•	“How do you want to be motivated?”
+	•	Options: Streaks, Achievements, Rewards Points.
+	•	Each with animated icon (fire, trophy, coin).
+	•	Show a “Preview” button for how rewards/achievements look in the dashboard.
+	6.	Trust & Privacy Page
+	•	Full-screen, animated trust-building step.
+	•	Animated shield/lock, privacy badges, live stats (“100K+ focus sessions secured!”).
+	•	Purple particles/background shimmer.
+	•	Bulleted privacy promises (use checkmarks).
+	•	‘Continue’ only enabled after all points are read (use scroll-check if needed).
+	7.	Graph/Stats Intro Page
+	•	Animated bar or line graph, fills from 0–100% as “Your Focus Profile is ready!”
+	•	Live number counter animation.
+	•	Motivational quote below graph.
+	8.	Plan Selection / Payment Page
+	•	“Pick your plan”—Pro Monthly, Pro Yearly (with “Most Popular” badge, animated).
+	•	Both have “7 day free trial” badge (pulse animation).
+	•	Each plan card glassmorphic, shadowed, hover/tap/hold interaction (scale/glow).
+	•	‘Continue’ stays disabled until a plan is picked.
+	•	On “Continue,” user is sent to Stripe payment flow, with the correct plan/trial parameters.
+	•	If they have a referral code, clear field at the top, with auto-apply animation.
+	•	Trust badge under cards: “30-day money-back guarantee.”
+	9.	Success/Confetti Page
+	•	“You’re in!” with animated confetti, trophy, and pulsing “Go to Dashboard” button.
+	•	Auto-redirect after 2 seconds (with button option).
+
+⸻
+
+2. ONBOARDING EXPERIENCE / INTERACTION DETAILS
+	•	Loop Logic:
+	•	If user has NOT subscribed, app loops back to first onboarding step after payment page if they exit.
+	•	If user is subscribed, onboarding is permanently skipped—goes straight to dashboard.
+	•	Accessibility:
+	•	Tab order, focus states, aria-labels for every element.
+	•	Large tap targets. High contrast for text/buttons.
+	•	All animations non-blocking and can be reduced for accessibility mode.
+	•	Microinteractions:
+	•	All option selections animate (pulse, glow, checkmark).
+	•	Hover, hold, tap states on every button/option—make it feel ALIVE.
+	•	Every “Continue” button: gradient, shadow, scales up on hover, disables if not valid.
+	•	Responsiveness:
+	•	Mobile, tablet, desktop: each screen is visually perfect and touch-friendly.
+	•	Portrait and landscape tested.
+	•	Animations run at 60fps, never janky.
+
+⸻
+
+3. PAYMENT & PLAN SELECTION — ULTRA-DETAILED
+	•	Plans:
+	•	Monthly Pro: $7/mo (7 day free trial)
+	•	Yearly Pro: $69/year (7 day free trial)
+	•	UI:
+	•	Big, pill-shaped cards for plans.
+	•	“Most Popular” badge for yearly: animated, glows, z-index high, never clipped/cut.
+	•	Free trial badge: pulsing, bouncy animation.
+	•	All prices and badges readable on any background.
+	•	Stripe Integration:
+	•	Instantly redirects to Stripe checkout on Continue.
+	•	Referral/special code: input field at top, with animated “applied” checkmark when valid.
+	•	After payment: redirect to “Success” confetti page, then Dashboard.
+	•	If payment fails/canceled, user is sent back to plan selection with error toast.
+
+⸻
+
+4. MAIN DASHBOARD FEATURES & UI
+
+(Only accessible to subscribed users. NO onboarding or paywall visible here ever again.)
+	•	Hero Section:
+	•	Welcome with user’s name, goal summary, streak counter, achievement preview.
+	•	Quick Session Start:
+	•	Big floating button: “Start Focus Session”
+	•	Options for Pomodoro, Long Session, or Strict Mode.
+	•	Each option: animated toggle, glowing border on hover/hold/tap.
+	•	App Blocker:
+	•	“Block distractions” toggle: animated icon, list of currently blocked apps.
+	•	Add/Remove blocked sites (autocomplete field, pill tags).
+	•	“Strict Mode” enables always-on, can’t be turned off mid-session.
+	•	Stats/Progress:
+	•	Animated line/bar graphs of past sessions, achievements, streaks, all real-time.
+	•	Graphs have intro animation (curve from Y to X axis), with “Your Progress” above.
+	•	“Today’s Stats” card—live updating as session runs.
+	•	Rewards & Achievements:
+	•	Achievement grid: locked/unlocked, with bouncy unlock animation.
+	•	Rewards points counter, preview of “redeem” actions.
+	•	Settings:
+	•	Theme toggle (dark/light, system).
+	•	Referral code management, subscription management, privacy options.
+	•	Export data, contact support, FAQ.
+
+⸻
+
+5. UI/UX PERFECTION & ANIMATIONS
+	•	Design:
+	•	All pages: glassmorphic, purple gradients, minimal and futuristic.
+	•	Rounded corners, pill shapes everywhere.
+	•	Modern fonts (Inter, Manrope, or your brand’s).
+	•	No grey dead zones, no clipped badges, no cut-off corners.
+	•	Animations:
+	•	Everything animates: page transitions, card entries, option selection, progress bars, badges.
+	•	Confetti & celebration on major milestones (first subscription, 7-day streak, first achievement, etc).
+	•	Micro-delight: hover/tap/hold everywhere—feels touchable and “alive”.
+	•	Responsiveness:
+	•	Must look perfect and work flawlessly on iPhone SE, iPad Pro, 4K desktop, Android, Chromebook, etc.
+	•	Test all pages in light and dark modes, including accessibility contrast mode.
+	•	Keyboard navigation works everywhere.
+
+⸻
+
+6. CRITICAL QA & BUG PREVENTION
+	•	Loop Testing:
+	•	Onboarding/payment must never be skippable for new users.
+	•	After payment, paywall must never reappear.
+	•	Stripe must work for all plans & trials, referral code always applies.
+	•	Every button/interaction: no dead clicks, no double-submits, all animate.
+	•	Visual QA:
+	•	“Most Popular” and “Free Trial” badges always fully visible, no clipping even on smallest screens.
+	•	Animated icons/badges must not stutter or disappear.
+	•	No unstyled or fallback screens anywhere.
+
+⸻
+
+7. DO NOT DO
+	•	Do NOT change or touch any non-onboarding/dashboard page.
+	•	Do NOT use solid grey backgrounds/buttons.
+	•	Do NOT use default/unstyled components.
+	•	Do NOT introduce new navigation, sidebars, or menus during onboarding.
+	•	Do NOT allow skipping the onboarding or payment wall for new users.
+
+⸻
+
+8. GO THROUGH EVERY POINT THOROUGHLY
+	•	For each screen, option, button, interaction, double-check and QA on all device sizes, in both color modes, logged in/out, and during subscription/payment.
+	•	Ask for clarification if any point is unclear.
+	•	Always check if a new user gets a perfect, glitch-free, delightful experience, and an existing subscriber NEVER sees onboarding/paywall again.
+
+⸻
+
+Ready to make Flox AI the new industry benchmark for onboarding, payments, and productivity UI.
+
+⸻
+
+“Read every word, follow every point, and check every feature on every device. NO compromises. This is for the future GOAT of productivity SaaS.”
+
+⸻
+
+If you want this as a Markdown doc, Notion page, PDF, or GPT profile, just say the word, and I’ll export it instantly!
